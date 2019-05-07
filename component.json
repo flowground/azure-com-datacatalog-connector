@@ -1,0 +1,152 @@
+{
+    "title": "Azure Data Catalog Resource Provider",
+    "description": "The Azure Data Catalog Resource Provider Services API.",
+    "docsUrl": "",
+    "url": "https://api.apis.guru/v2/specs/azure.com/datacatalog/2016-03-30/swagger.json",
+    "envVars": {
+        "OAUTH_CLIENT_ID": {
+            "description": "OAuth Client ID"
+        },
+        "OAUTH_CLIENT_SECRET": {
+            "description": "OAuth Client Secret"
+        }
+    },
+    "credentials": {
+        "fields": {
+            "server": {
+                "label": "Server",
+                "viewClass": "SelectView",
+                "model": [
+                    "https://management.azure.com/",
+                    "--- Custom URL"
+                ],
+                "required": true
+            },
+            "otherServer": {
+                "label": "Custom Server URL",
+                "viewClass": "TextFieldView"
+            },
+            "azure_auth": {
+                "label": "Azure Active Directory OAuth2 Flow",
+                "viewClass": "OAuthFieldView"
+            }
+        },
+        "oauth2": {
+            "client_id": "{{OAUTH_CLIENT_ID}}",
+            "client_secret": "{{OAUTH_CLIENT_SECRET}}",
+            "auth_uri": "https://login.microsoftonline.com/common/oauth2/authorize"
+        }
+    },
+    "triggers": {
+        "startFlow": {
+            "main": "./lib/triggers/startFlow.js",
+            "type": "polling",
+            "title": "Start Flow",
+            "fields": {}
+        }
+    },
+    "actions": {
+        "ADCOperations_List": {
+            "main": "./lib/actions/ADCOperations_List.js",
+            "title": "Lists all the available Azure Data Catalog service operations.",
+            "description": "Lists all the available Azure Data Catalog service operations.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ADCOperations_List.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ADCCatalogs_ListtByResourceGroup": {
+            "main": "./lib/actions/ADCCatalogs_ListtByResourceGroup.js",
+            "title": "List catalogs in Resource Group (GET Resources)",
+            "description": "The List catalogs in Resource Group operation lists all the Azure Data Catalogs available under the given resource group.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ADCCatalogs_ListtByResourceGroup.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ADCCatalogs_Delete": {
+            "main": "./lib/actions/ADCCatalogs_Delete.js",
+            "title": "Delete Azure Data Catalog Service (DELETE Resource)",
+            "description": "The Delete Azure Data Catalog Service operation deletes an existing data catalog.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ADCCatalogs_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ADCCatalogs_Get": {
+            "main": "./lib/actions/ADCCatalogs_Get.js",
+            "title": "Get Azure Data Catalog service (GET Resources)",
+            "description": "The Get Azure Data Catalog Service operation retrieves a json representation of the data catalog.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ADCCatalogs_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ADCCatalogs_Update": {
+            "main": "./lib/actions/ADCCatalogs_Update.js",
+            "title": "Update Azure Data Catalog Service (PATCH Resource)",
+            "description": "The Update Azure Data Catalog Service operation can be used to update the existing deployment. The update call only supports the properties listed in the PATCH body.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ADCCatalogs_Update.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ADCCatalogs_CreateOrUpdate": {
+            "main": "./lib/actions/ADCCatalogs_CreateOrUpdate.js",
+            "title": "Create or Update Azure Data Catalog service (PUT Resource)",
+            "description": "The Create Azure Data Catalog service operation creates a new data catalog service with the specified parameters. If the specific service already exists, then any patchable properties will be updated and any immutable properties will remain unchanged.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ADCCatalogs_CreateOrUpdate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}
